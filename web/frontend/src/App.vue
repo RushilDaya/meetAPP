@@ -1,17 +1,34 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome  Your Vue.js App"/>
+    <HelloWorld msg="Welcome  Your YAA Vue.js App:"/>
+    <p>{{apiMessage}}</p>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
   name: 'app',
+  data (){
+    return {
+      apiMessage:''
+    }
+  },
   components: {
     HelloWorld
+  },
+  beforeMount(){
+    axios.get(process.env.VUE_APP_BASEURL)
+    .then(response =>{
+      this.apiMessage = response.data
+    })
+    .catch(e => {
+      this.apiMessage = e
+    })
+    
   }
 }
 </script>
