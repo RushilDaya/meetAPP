@@ -9,3 +9,11 @@ services:
       - ./web/frontend:/app
     ports:
       - '8080:8080'
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./api
+    volumes:
+      - ./api:/app
+    ports:
+      - '5000:5000'
