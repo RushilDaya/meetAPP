@@ -1,0 +1,11 @@
+version: '3'
+services:
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./web/frontend
+    volumes:
+      - /app/node_modules
+      - ./web/frontend:/app
+    ports:
+      - '8080:8080'
