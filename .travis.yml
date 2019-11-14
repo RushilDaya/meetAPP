@@ -14,3 +14,17 @@ after_success:
   - docker push rushildayabme/meetAPP-client
   - docker push rushildayabme/meetAPP-api
   - docker push rushildayabme/meetAPP-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-west-2
+  app: meetAPP
+  env: Meetapp-env
+  bucket_name: elasticbeanstalk-us-west-2-720830066180
+  bucket_path: meetAPP
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
