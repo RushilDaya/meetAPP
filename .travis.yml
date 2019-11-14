@@ -7,4 +7,10 @@ services:
 script: 'true'
 
 after_success: 
-  - docker build -t rushildayabme/client ./web/frontend
+  - docker build -t rushildayabme/meetAPP-client ./web/frontend
+  - docker build -t rushildayabme/meetAPP-api ./api
+  - docker build -t rushildayabme/meetAPP-nginx ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push rushildayabme/meetAPP-client
+  - docker push rushildayabme/meetAPP-api
+  - docker push rushildayabme/meetAPP-nginx
