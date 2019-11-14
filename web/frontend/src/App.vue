@@ -28,6 +28,7 @@ export default {
     .catch(e => {
       this.apiMessage = e
     })
+    window.console.log(process.env)
     
   }
 }
