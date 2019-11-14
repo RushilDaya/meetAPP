@@ -19,7 +19,7 @@ deploy:
   provider: elasticbeanstalk
   region: us-west-2
   app: meetAPP
-  env: Meetapp-env
+  env: Meetapp-env-1
   bucket_name: elasticbeanstalk-us-west-2-720830066180
   bucket_path: meetAPP
   on:
