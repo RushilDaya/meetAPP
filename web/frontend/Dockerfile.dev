@@ -1,6 +1,8 @@
 FROM node:alpine
 WORKDIR '/app'
+RUN echo
 COPY ./package.json ./
+RUN cat package.json
 RUN npm install --save
 COPY . .
-CMD ["npm","run","serve"]
+CMD ["npm","run","serve"] 
