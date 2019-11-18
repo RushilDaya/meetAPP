@@ -1,13 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome  Your YAA Vue.js App:"/>
-    <p>{{apiMessage}}</p>
+    <b-navbar id="navbar">
+      <template slot="brand">
+        <navbar-item>
+          <img id="brandImage"
+            src="./assets/brand.svg"
+            alt="MeetApp"
+          >
+        </navbar-item>
+      </template>
+       <template slot="start">
+            <b-navbar-item href="#">
+                Home
+            </b-navbar-item>
+            <b-navbar-item href="#">
+                Profile
+            </b-navbar-item>
+        </template>
+        <template slot="end">
+            <b-navbar-item tag="div">
+                <div class="buttons">
+                    <a v-if="!$auth.isAuthenticated" @click="login" class="button is-light">
+                        Log in
+                    </a>
+                    <a v-if="$auth.isAuthenticated" @click="logout" class="button is-light">
+                        Log Out
+                    </a>
+                </div>                
+            </b-navbar-item>
+        </template>
+    </b-navbar>
+    <section class="hero is-primary is-fullheight">
+      <router-view></router-view>
+    </section>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import axios from 'axios'
 
 export default {
@@ -18,7 +47,18 @@ export default {
     }
   },
   components: {
-    HelloWorld
+  },
+  methods: {
+    // Log the user in
+    login() {
+      this.$auth.loginWithRedirect();
+    },
+    // Log the user out
+    logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
+    }
   },
   beforeMount(){
     var connectionPath = process.env.VUE_APP_BASEURL+'/api/';
@@ -41,6 +81,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+#navbar {
+  padding: 20px;
+}
+#brandImage {
+  height: 50px;
 }
 </style>
