@@ -56,6 +56,10 @@ def home():
     print(count)
     return str(count)
 
+@app.route('/user/email/<address>',methods=['GET'])
+def checkEmail(address):
+    print(address)
+    return address
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
