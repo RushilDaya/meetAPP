@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import * as userAPI from './apiCalls/user.js'
+
 export default {
   name: 'app',
   data (){
@@ -49,7 +51,7 @@ export default {
   methods: {
     // Log the user in
     login() {
-      this.$auth.loginWithRedirect();
+      this.$auth.loginWithRedirect()
     },
     // Log the user out
     logout() {
@@ -57,7 +59,31 @@ export default {
         returnTo: window.location.origin
       });
     }
-  }
+  },
+  computed:{
+    authState: function(){
+        return this.$auth.isAuthenticated
+    }, 
+    userData: function(){
+       return this.$auth.user
+    }
+  },
+  watch: {
+    userData: function(){
+        if (this.authState == true){
+            userAPI.emailExists(this.userData.email)
+              .then(emailData =>{
+                if (emailData['exists']==false){
+                  this.$router.push({name:'createProfile',params:{email:emailData['email']}})
+                }
+                else{
+                  this.$router.push({name:'home'})
+                }
+              })
+            
+        }
+    }
+  },
 }
 </script>
 

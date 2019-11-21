@@ -1,6 +1,7 @@
 import Profile from "./components/Profile.vue";
 import HomeComponent from './components/HomeComponent.vue';
 import Management from './components/Management.vue';
+import CreateProfile from './components/CreateProfile.vue';
 import VueRouter from 'vue-router';
 
 const router = new VueRouter({
@@ -21,6 +22,12 @@ const router = new VueRouter({
       path: '/management',
       name: 'management',
       component: Management
+    },
+    {
+      path: '/createProfile',
+      name:'createProfile',
+      component: CreateProfile,
+      props: true
     }
   ]
 });

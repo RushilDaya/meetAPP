@@ -16,30 +16,10 @@
 </template>
 
 <script>
-import * as userAPI from '../apiCalls/user.js'
-
 export default {
   name: 'HomeComponent',
   props: {
     msg: String
-  },
-  computed:{
-    authState: function(){
-        return this.$auth.isAuthenticated
-    }, 
-    userData: function(){
-       return this.$auth.user
-    }
-  },
-  watch: {
-    userData: function(){
-        if (this.authState == true){
-            userAPI.emailExists(this.userData.email)
-            .then(emailData=>{
-              window.console.log(emailData)
-            })
-        }
-    }
   },
   methods: {
   }
