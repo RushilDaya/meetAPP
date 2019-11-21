@@ -33,3 +33,23 @@ def doesEmailExist(email):
     if len(rows) == 1:
         return True
     raise Exception('corrupt db')
+
+def tryCreateNewUser(username,email,firstname,surname,gender,age):
+    conn, cursor = getConnectionAndCursor()
+
+    insert_record = '''
+        INSERT INTO users (username, email, firstname, lastname, age, gender)
+        VALUES ('%s', '%s', '%s', '%s', %i, '%s');
+    ''' % (
+        username,email,firstname,surname,age,gender
+    )
+    try:
+        cursor.execute(insert_record)
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return (True,'')
+    except:
+        cursor.close()
+        conn.close()
+        return (False,'Could not create user')
