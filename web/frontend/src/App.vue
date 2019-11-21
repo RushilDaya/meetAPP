@@ -37,8 +37,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   name: 'app',
   data (){
@@ -59,17 +57,6 @@ export default {
         returnTo: window.location.origin
       });
     }
-  },
-  beforeMount(){
-    var connectionPath = process.env.VUE_APP_BASEURL+'/api/';
-    window.console.log(connectionPath)
-    axios.get(connectionPath)
-    .then(response =>{
-      this.apiMessage = response.data
-    })
-    .catch(e => {
-      this.apiMessage = e
-    })
   }
 }
 </script>
