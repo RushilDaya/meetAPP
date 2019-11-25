@@ -10,11 +10,15 @@
         </navbar-item>
       </template>
        <template slot="start">
-            <b-navbar-item href="#">
-                Home
+            <b-navbar-item>
+                <div>
+                  Home
+                </div>
             </b-navbar-item>
-            <b-navbar-item href="#">
-                Profile
+            <b-navbar-item>
+                <div @click="$router.push('profile')">
+                  Profile
+                </div>
             </b-navbar-item>
         </template>
         <template slot="end">
@@ -40,6 +44,9 @@
 import * as userAPI from './apiCalls/user.js'
 
 export default {
+  // TODO: get the profile section showing the profile properly (with some navigation)
+  // extend the database to show interests.
+  // extend the database to show favorite types of food.
   name: 'app',
   data (){
     return {
@@ -102,3 +109,4 @@ export default {
   height: 50px;
 }
 </style>
+

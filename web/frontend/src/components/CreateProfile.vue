@@ -8,6 +8,11 @@
             <h2 class="subtitle" style="color:black">
                 {{email}}
             </h2>
+            
+            <b-message v-if="showErrorMessage" type="is-danger">
+             {{errorMessage}}
+            </b-message>
+
                 <section>
                     <b-field label="User Name">
                         <b-input v-model="userName"></b-input>
@@ -74,15 +79,31 @@ export default {
           firstName:'',
           surname:'',
           age:21,
-          gender:'M'
+          gender:'M',
+          errorMessage :''
       }
   },
   methods: {
       attemptUserCreate(){
           userAPI.attemptUserCreate(this.userName,this.firstName,this.surname,this.age,this.gender,this.email)
+          .then(response=>{
+              if (response.success === true){
+                  this.$router.push('home')
+              }
+              else {
+                  this.errorMessage = response.reason
+              }
+          })
       }
+
   },
   computed:{
+      showErrorMessage: function(){
+          if (this.errorMessage == ''){
+              return false
+          }
+          return true
+      },
       invalidFirstName: function(){
           if (this.firstName == ''){
               return true

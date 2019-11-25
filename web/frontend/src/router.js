@@ -14,13 +14,13 @@ const router = new VueRouter({
       component:HomeComponent
     },
     {
-      path: "/profile",
-      name: "profile",
+      path: "/Profile",
+      name: "Profile",
       component: Profile
     },
     {
-      path: '/management',
-      name: 'management',
+      path: '/Management',
+      name: 'Management',
       component: Management
     },
     {
