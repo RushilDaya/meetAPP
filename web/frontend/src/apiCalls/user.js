@@ -15,9 +15,9 @@ export function emailExists(userEmail){
         return 'sad'
     })
 }
-export function attemptUserCreate(userName,firstName,surname,age,gender,email){
-    var data = {username:userName,
-                firstname:firstName,
+export function attemptUserCreate(username,firstname,surname,age,gender,email){
+    var data = {username:username,
+                firstname:firstname,
                 surname:surname,
                 age:age,
                 gender:gender,
@@ -33,7 +33,7 @@ export function attemptUserCreate(userName,firstName,surname,age,gender,email){
 }
 
 export function getUserData(email){
-    return axios.get(BASE_URL_USER+`get/${email}`)
+    return axios.get(BASE_URL_USER+`${email}`)
     .then(response =>{
         return response.data
     })

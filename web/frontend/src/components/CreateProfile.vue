@@ -15,17 +15,17 @@
 
                 <section>
                     <b-field label="User Name">
-                        <b-input v-model="userName"></b-input>
+                        <b-input v-model="username"></b-input>
                     </b-field>
                 </section>
                 <section>
                     <b-field label="First Name">
-                        <b-input v-model="firstName"></b-input>
+                        <b-input v-model="firstname"></b-input>
                     </b-field>
                 </section>
                 <section>
-                    <b-field label="Surname">
-                        <b-input v-model="surname"></b-input>
+                    <b-field label="Last Name">
+                        <b-input v-model="lastname"></b-input>
                     </b-field>
                 </section>
                 <section>
@@ -75,9 +75,9 @@ export default {
   },
   data(){
       return {
-          userName:'',
-          firstName:'',
-          surname:'',
+          username:'',
+          firstname:'',
+          lastname:'',
           age:21,
           gender:'M',
           errorMessage :''
@@ -85,7 +85,7 @@ export default {
   },
   methods: {
       attemptUserCreate(){
-          userAPI.attemptUserCreate(this.userName,this.firstName,this.surname,this.age,this.gender,this.email)
+          userAPI.attemptUserCreate(this.username,this.firstname,this.lastname,this.age,this.gender,this.email)
           .then(response=>{
               if (response.success === true){
                   this.$router.push('home')
@@ -105,34 +105,34 @@ export default {
           return true
       },
       invalidFirstName: function(){
-          if (this.firstName == ''){
+          if (this.firstname == ''){
               return true
           }
-          if (this.firstName.indexOf(' ') !== -1){
+          if (this.firstname.indexOf(' ') !== -1){
               return true
           }
           return false
       },
-      invalidSurname: function(){
-          if (this.surname == ''){
+      invalidLastName: function(){
+          if (this.lastname == ''){
               return true
           }
-          if (this.surname.indexOf(' ') !== -1){
+          if (this.lastname.indexOf(' ') !== -1){
               return true
           }
           return false
       },
       invalidUserName: function(){
-          if (this.userName == ''){
+          if (this.username == ''){
               return true
           }
-          if (this.userName.indexOf(' ') !== -1){
+          if (this.username.indexOf(' ') !== -1){
               return true
           }
           return false
       },
       invalidData: function(){
-          return this.invalidFirstName || this.invalidSurname || this.invalidUserName
+          return this.invalidFirstName || this.invalidLastName || this.invalidUserName
       }
   },
   mounted(){

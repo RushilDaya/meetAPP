@@ -1,48 +1,48 @@
 <template>
     <div>
-      <div v-if="state=='pending'">
+      <div v-if="state==='pending'">
         loading...
       </div>
-      <div v-if="state=='failure'">
+      <div v-if="state==='failure'">
           <b-message size="is-medium is-warning">
                 {{message}}
           </b-message>
       </div>
-      <div v-if="state=='ready'">
+      <div v-if="state==='ready'">
             <section>
                     <b-field label="User Name">
-                        <b-input v-model="userName"></b-input>
+                        <b-input v-model="username"></b-input>
                     </b-field>
                 </section>
                 <section>
                     <b-field label="First Name">
-                        <b-input v-model="userFirstName"></b-input>
+                        <b-input v-model="firstname"></b-input>
                     </b-field>
                 </section>
                 <section>
-                    <b-field label="Surname">
-                        <b-input v-model="userSurname"></b-input>
+                    <b-field label="Last Name">
+                        <b-input v-model="lastname"></b-input>
                     </b-field>
                 </section>
                 <section>
                     <b-field label="Age">
-                        <b-numberinput v-model="userAge" controls-rounded></b-numberinput>
+                        <b-numberinput v-model="age" controls-rounded></b-numberinput>
                     </b-field>
                 </section>
                 <section>
                     <b-field label="Gender">
                         <div class="block">
-                            <b-radio v-model="userGender"
+                            <b-radio v-model="gender"
                                 name="Male"
                                 native-value="M">
                                 Male
                             </b-radio>
-                            <b-radio v-model="userGender"
+                            <b-radio v-model="gender"
                                 name="Female"
                                 native-value="F">
                                 Female
                             </b-radio>
-                            <b-radio v-model="userGender"
+                            <b-radio v-model="gender"
                                 name="Other"
                                 native-value="O">
                                 Other
@@ -63,12 +63,12 @@ export default {
     return {
       state : 'pending',
       message : '',
-      userName:'',
-      userEmail:'',
-      userFirstName:'',
-      userLastName:'',
-      userGender:'',
-      userAge:0
+      username:'',
+      email:'',
+      firstname:'',
+      lastname:'', 
+      gender:'',
+      age:0
     }
   },
   components: {
@@ -84,12 +84,12 @@ export default {
         this.message = 'could not find user profile';
       }
       else {
-        this.userName = userData.userName;
-        this.userEmail = userData.userEmail;
-        this.userFirstName = userData.userFirstName;
-        this.userLastName = userData.userLastName;
-        this.userGender = userData.userGender;
-        this.userAge = userData.userAge;
+        this.username = userData.username;
+        this.email = userData.email;
+        this.firstname = userData.firstname;
+        this.lastname = userData.lastname;
+        this.gender = userData.gender;
+        this.age = userData.age;
         this.state = 'ready';
       }
     })

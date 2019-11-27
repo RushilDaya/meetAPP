@@ -22,10 +22,10 @@ def home():
     return ''
 
 
-@app.route('/user/email/<address>',methods=['GET'])
-def checkEmail(address):
-    emailExists = di.doesEmailExist(address)
-    payload = {'email':address,'exists': emailExists}
+@app.route('/user/email/<email>',methods=['GET'])
+def checkEmail(email):
+    emailExists = di.doesEmailExist(email)
+    payload = {'email':email,'exists': emailExists}
     return jsonify(payload)
 
 @app.route('/user/create',methods=['POST'])
@@ -34,14 +34,25 @@ def createNewUser():
     username = data['username']
     email = data['email']
     firstname = data['firstname']
-    surname = data['surname']
+    lastname = data['lastname']
     gender = data['gender']
     age = data['age']
 
-    success,reason = di.tryCreateNewUser(username,email,firstname,surname,gender,age)
+    success,reason = di.tryCreateNewUser(username,email,firstname,lastname,gender,age)
     payload = {'success':success,'reason':reason}
     
     return jsonify(payload)
+
+@app.route('/user/<email>',methods=['GET'])
+def getUser(email):
+    emailExists = di.doesEmailExist(email)
+    if not emailExists:
+        payload = {'sucess':False,'reason':'user not found'}
+    if emailExists:
+        payload = di.getUserData(email)
+    return jsonify(payload)
+
+        
 
 @app.route('/general/init',methods=['POST'])
 def init():
