@@ -31,8 +31,8 @@ def initialiseUserTable():
     conn, cursor = getConnectionAndCursor()
     create_user_table_if_ne = '''
         CREATE TABLE IF NOT EXISTS users (
-            username varchar(255) PRIMARY KEY NOT NULL,
-            email varchar(255) UNIQUE NOT NULL,
+            username varchar(255) UNIQUE NOT NULL,
+            email varchar(255) PRIMARY KEY NOT NULL,
             firstname varchar(255) NOT NULL, 
             lastname varchar(255) NOT NULL,
             age integer NOT NULL,

@@ -54,6 +54,27 @@ def tryCreateNewUser(username,email,firstname,lastname,gender,age):
         conn.close()
         return (False,'Could not create user')
 
+def updateUser(username,email,firstname,lastname,gender,age):
+    conn, cursor = getConnectionAndCursor()
+
+    update_record = '''
+        UPDATE users 
+        SET username='%s',firstname='%s', lastname='%s', age=%i, gender='%s'
+        WHERE email='%s';
+    ''' % (
+        username,firstname,lastname,age,gender,email
+    )
+    try:
+        cursor.execute(update_record)
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return (True,'')
+    except:
+        cursor.close()
+        conn.close()
+        return (False,'Could not update user')
+
 def getUserData(email):
     conn, cursor = getConnectionAndCursor()
 

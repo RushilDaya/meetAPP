@@ -43,6 +43,21 @@ def createNewUser():
     
     return jsonify(payload)
 
+@app.route('/user/<email>',methods=['PUT'])
+def updateUser(email):
+    data = json.loads(request.data.decode())
+    username = data['username']
+    email = data['email']
+    firstname = data['firstname']
+    lastname = data['lastname']
+    gender = data['gender']
+    age = data['age']
+
+    sucess, reason = di.updateUser(username,email,firstname,lastname,gender,age)
+    payload = {'sucess':sucess, 'reason':reason}
+    return jsonify(payload)
+
+
 @app.route('/user/<email>',methods=['GET'])
 def getUser(email):
     emailExists = di.doesEmailExist(email)
@@ -51,6 +66,7 @@ def getUser(email):
     if emailExists:
         payload = di.getUserData(email)
     return jsonify(payload)
+
 
         
 

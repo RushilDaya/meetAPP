@@ -50,6 +50,11 @@
                         </div>
                     </b-field>
                 </section>
+                <section>
+                    <div class="buttons">
+                        <b-button  @click="attemptUserUpdate()" type="is-primary">Update</b-button>
+                    </div>
+                </section>
       </div>
     </div>
 </template>
@@ -73,7 +78,23 @@ export default {
   },
   components: {
   },
-  methods: {},
+  methods: {
+    attemptUserUpdate(){
+      this.state = 'pending'
+      userAPI.attemptUserUpdate(this.email,this.username,
+                                this.firstname,this.lastname,
+                                this.age, this.gender)
+      .then(response =>{
+        if (response.success == true){
+          this.state = 'ready'
+        }
+        else {
+          this.state = 'failure';
+          this.message = response.reason;
+        }
+      })
+    }
+  },
   computed:{},
   watch: {},
   mounted(){
