@@ -29,6 +29,8 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=password
       - PGPORT=5432
+      - AUTH0DOMAIN='https://dev-jdnp88sk.auth0.com/'
+      - AUTH0AUDIENCE='https://meetapp.dev'
   nginx:
     restart: always
     build:

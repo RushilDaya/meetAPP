@@ -78,7 +78,7 @@ export default {
   watch: {
     userData: function(){
         if (this.authState == true){
-            userAPI.emailExists(this.userData.email)
+            userAPI.emailExists(this.$http, this.userData.email)
               .then(emailData =>{
                 if (emailData['exists']==false){
                   this.$router.push({name:'createProfile',params:{email:emailData['email']}})

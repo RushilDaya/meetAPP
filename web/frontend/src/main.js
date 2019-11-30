@@ -10,6 +10,9 @@ import { domain, clientId } from "../auth_config.json";
 // Import the plugin here
 import { Auth0Plugin } from "./auth";
 
+import axios from "axios";
+Vue.prototype.$http = axios
+
 // Install the authentication plugin here
 Vue.use(Auth0Plugin, {
   domain,
@@ -30,6 +33,7 @@ Vue.use(Buefy)
 
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
+
 
 new Vue({
   render: h => h(App),

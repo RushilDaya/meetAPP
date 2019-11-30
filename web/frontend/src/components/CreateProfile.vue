@@ -85,7 +85,7 @@ export default {
   },
   methods: {
       attemptUserCreate(){
-          userAPI.attemptUserCreate(this.username,this.firstname,this.lastname,this.age,this.gender,this.email)
+          userAPI.attemptUserCreate(this.$http, this.username,this.firstname,this.lastname,this.age,this.gender,this.email)
           .then(response=>{
               if (response.success === true){
                   this.$router.push('home')

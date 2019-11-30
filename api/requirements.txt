@@ -1,3 +1,6 @@
 Flask
 flask-cors
+python-dotenv
+python-jose
+six
 psycopg2

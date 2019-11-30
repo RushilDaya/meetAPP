@@ -81,7 +81,7 @@ export default {
   methods: {
     attemptUserUpdate(){
       this.state = 'pending'
-      userAPI.attemptUserUpdate(this.email,this.username,
+      userAPI.attemptUserUpdate(this.$http,this.email,this.username,
                                 this.firstname,this.lastname,
                                 this.age, this.gender)
       .then(response =>{
@@ -98,7 +98,7 @@ export default {
   computed:{},
   watch: {},
   mounted(){
-    userAPI.getUserData(this.$auth.user.email)
+    userAPI.getUserData(this.$http,this.$auth.user.email)
     .then(userData =>{
       if (userData.success == false){
         this.state = 'failure';

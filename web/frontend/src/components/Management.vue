@@ -14,7 +14,7 @@ export default {
   },
   methods: {
       initDB (){
-          generalAPI.initDB()
+          generalAPI.initDB(this.$http)
       }
 
   }
